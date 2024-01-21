@@ -47,13 +47,13 @@
             <h1>Our products</h1>
             <div id="cardContainer">
 			<?php
-                // Database configuratiegegevens
+                // Database configuration
                 $host = 'mysql';
-                $dbname = 'kommaardoor';
+                $dbname = 'm3tDB';
                 $user = 'root';
-                $password = 'qwerty';
+                $password = 'LockeD1337!';
 
-                // PDO-verbinding
+                // PDO
                 try {
                     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
                 } catch (PDOException $e) {
@@ -61,20 +61,19 @@
                 }
 
                 // Query to get products
-                $query = "SELECT * FROM producten";
+                $query = "SELECT * FROM products";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
 
                 // loop through results
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="card">';
-                    echo '<h2>' . $row['productnaam'] . '</h2>';
-                    echo '<img src="' . $row['afbeelding_url'] . '">';
+                    echo '<h2>' . $row['productname'] . '</h2>';
+                    echo '<img src="' . $row['short_description'] . '">';
                     echo '<a class="infoBtn" href="#">Find out more</a>';
                     echo '</div>';
                 }
 
-                // Sluit de PDO-verbinding
                 $pdo = null;
                 ?>			
 			
